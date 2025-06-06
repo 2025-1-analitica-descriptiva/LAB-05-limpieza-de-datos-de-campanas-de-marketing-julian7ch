@@ -3,9 +3,28 @@ Escriba el codigo que ejecute la accion solicitada.
 """
 
 # pylint: disable=import-outside-toplevel
+from homework.cargas_data_desde_ZIP import carga_data_desde_ZIP
+from homework.limpiar_datos_cliente import limpiar_datos_cliente
+from homework.limpiar_datos_campana import limpiar_datos_campana
+from homework.limpiar_datos_economicos import limpiar_datos_economicos
 
 
 def clean_campaign_data():
+    input_dir = 'files/input/'
+    output_dir = 'files/output/'
+
+    full_df = carga_data_desde_ZIP(input_dir)
+
+    client_df = limpiar_datos_cliente(full_df)   
+    campaign_df =  limpiar_datos_campana(full_df)
+    economics_df = limpiar_datos_economicos(full_df)    
+
+    client_df.to_csv(f'{output_dir}client.csv', index=False)
+    campaign_df.to_csv(f'{output_dir}campaign.csv', index=False)
+    economics_df.to_csv(f'{output_dir}economics.csv', index=False)
+
+    print("Archivos guardados en files/output/")
+
     """
     En esta tarea se le pide que limpie los datos de una campaña de
     marketing realizada por un banco, la cual tiene como fin la
