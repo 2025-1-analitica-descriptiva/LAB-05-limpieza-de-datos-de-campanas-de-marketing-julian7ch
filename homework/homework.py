@@ -23,7 +23,6 @@ def clean_campaign_data():
     campaign_df.to_csv(f'{output_dir}campaign.csv', index=False)
     economics_df.to_csv(f'{output_dir}economics.csv', index=False)
 
-    print("Archivos guardados en files/output/")
 
     """
     En esta tarea se le pide que limpie los datos de una campaña de
